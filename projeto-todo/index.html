@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="imagens/logo.svg" alt="logo">
+    </header>
+
+    <section class="input_tarefa">
+        <input type="text" id="input_tarefa" placeholder="Adicione uma nova tarefa">
+        <button id="adicionar_tarefa">Criar</button>
+    </section>
+    
+    <section class="lista_tarefas">
+        <ul id="lista">
+        </ul>
+        <div>Total de tarefas: <span id="total_tarefas">0</span></div>
+        <div>Tarefas concluídas: <span id="tarefas_concluidas">0</span></div>
+    </section>
+
+    <script>
+        const inputTarefa = document.getElementById('input_tarefa');
+        const btnAdicionarTarefa = document.getElementById('adicionar_tarefa');
+        const listaTarefas = document.getElementById('lista');
+        const totalTarefas = document.getElementById('total_tarefas');
+        const tarefasConcluidas = document.getElementById('tarefas_concluidas');
+
+        let tarefas = [];
+
+        
+        function renderizarTarefas() {
+            listaTarefas.innerHTML = '';
+            totalTarefas.textContent = tarefas.length;
+
+            const tarefasConcluidasCount = tarefas.filter(tarefa => tarefa.concluida).length;
+            tarefasConcluidas.textContent = tarefasConcluidasCount;
+
+            tarefas.forEach((tarefa, index) => {
+                const itemLista = document.createElement('li');
+                
+               
+                if (tarefa.concluida) {
+                    itemLista.classList.add('tarefa-concluida');
+                }
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = tarefa.concluida;
+                checkbox.addEventListener('change', () => {
+                    tarefa.concluida = checkbox.checked;
+                    renderizarTarefas();
+                });
+                
+                const spanTarefa = document.createElement('span');
+                spanTarefa.textContent = `${index + 1}. ${tarefa.nome}`;
+                
+                const btnRemover = document.createElement('button');
+                btnRemover.textContent = 'Remover';
+                btnRemover.addEventListener('click', () => {
+                    tarefas.splice(index, 1);
+                    renderizarTarefas();
+                });
+                
+                itemLista.appendChild(checkbox);
+                itemLista.appendChild(spanTarefa);
+                itemLista.appendChild(btnRemover);
+                listaTarefas.appendChild(itemLista);
+            });
+        }
+
+        
+        btnAdicionarTarefa.addEventListener('click', () => {
+            const nomeTarefa = inputTarefa.value.trim();
+            if (nomeTarefa !== '') {
+                tarefas.push({ nome: nomeTarefa, concluida: false });
+                inputTarefa.value = '';
+                renderizarTarefas();
+            }
+        });
+
+        renderizarTarefas(); 
+    </script>
+</body>
+</html>

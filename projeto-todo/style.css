@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+body{
+    background-color: #1A1A1A;
+}
+
+:root{
+    --cor01: #0D0D0D;
+    --cor02: #1E6F9F;
+
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 11rem;
+    background-color: var(--cor01);
+}
+
+.input_tarefa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -20px;
+}
+
+#input_tarefa{
+    width: 600px;
+    max-width: 500px;
+}
+
+input{
+    background-color: #262626;
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    height: 2rem;
+    color: white;
+}
+
+button{
+    background-color: #1E6F9F;
+    padding: 0.9rem 1rem;
+    border: none;
+    margin-left: 5px;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+
+.lista_tarefas {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative; 
+    color: white;
+}
+
+.lista_tarefas ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lista_tarefas li {
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lista_tarefas .tarefas-criadas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #1E6F9F;
+    padding: 5px 10px;
+    border-radius: 5px 0 0 0;
+}
+
+.lista_tarefas .tarefas-concluidas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #1E6F9F;
+    padding: 5px 10px;
+    border-radius: 0 5px 0 0;
+}
+
+.lista_tarefas li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.lista_tarefas li button {
+    background-color: #C70039;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
